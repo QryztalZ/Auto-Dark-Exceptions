@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Dark Exceptions",
+  "version": "1.0.0",
+  "description": "Fork of Dark Mode Exceptions by rafaeldtinoco, but better.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "8": "icon8.png",
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "64": "icon64.png",
+    "128": "icon128.png",
+    "256": "icon256.png",
+    "512": "icon512.png"
+  }
+}

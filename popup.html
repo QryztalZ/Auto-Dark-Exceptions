@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Dark Exceptions</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 331px;
+      height: 320px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    body {
+      width: 331px;
+      height: 320px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border-radius: 12px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      position: relative;
+      width: 331px;
+      height: 320px;
+      margin: 0;
+      padding: 16px;
+      background: #1A1C1C;
+      border: 1px solid #1D1E1E;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .title {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .close-window {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #A3A2A3;
+      font-size: 22px;
+      line-height: 1;
+      border-radius: 50%;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+
+    .close-window:hover {
+      background: #303131;
+    }
+
+    .close-window:active {
+      background: rgba(255, 255, 255, 0.3);
+      transition: background 0.1s ease;
+    }
+
+    .textbox {
+      position: absolute;
+      top: 60px;
+      left: 16px;
+      right: 16px;
+      bottom: 130px;
+      background: #151717;
+      border: 1px solid #2A2C2C;
+      border-radius: 6px;
+      color: #fff;
+      font-family: "Courier New", Consolas, Monaco, Menlo, monospace;
+      font-size: 14px;
+      padding: 10px;
+      outline: none;
+      line-height: 1.5;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      cursor: text;
+      transition: border-color 0.3s ease;
+    }
+
+    .textbox:focus {
+      border-color: #3A3B3B;
+    }
+
+    .textbox.invalid {
+      border-color: #FF4444;
+    }
+
+    .textbox.valid {
+      border-color: #44FF44;
+    }
+
+    .comment-line {
+      color: #6A6C6C;
+    }
+
+    button {
+      position: absolute;
+      background: #303131;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: #3A3B3B;
+    }
+
+    .action-btn {
+      bottom: 72px;
+      left: 16px;
+      width: 200px;
+    }
+
+    .save-btn {
+      bottom: 72px;
+      left: 232px;
+      right: 16px;
+    }
+
+    .enable-btn {
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pulse-white::after {
+      background: #FFFFFF;
+      animation: pulseWhite 0.5s ease;
+    }
+
+    .pulse-red::after {
+      background: #FF4444;
+      animation: pulseRed 0.5s ease;
+    }
+
+    .pulse-green::after {
+      background: #44FF44;
+      animation: pulseGreen 0.5s ease;
+    }
+
+    @keyframes pulseWhite {
+      from {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translate(-50%, -50%) scale(40);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulseRed {
+      from {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translate(-50%, -50%) scale(20);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulseGreen {
+      from {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translate(-50%, -50%) scale(20);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+    <div class="title">
+      Auto Dark Exceptions
+    </div>
+
+    <div
+      class="close-window"
+      id="closeWindow"
+      title="Close"
+      aria-label="Close"
+    >×</div>
+
+    <div
+      class="textbox"
+      id="siteInput"
+      contenteditable="true"
+      spellcheck="false"
+      role="textbox"
+      aria-multiline="true"
+    ></div>
+
+    <button
+      class="action-btn"
+      id="toggleBtn"
+      type="button"
+    >Add site to list</button>
+
+    <button
+      class="save-btn"
+      id="saveBtn"
+      type="button"
+    >Save</button>
+
+    <button
+      class="enable-btn"
+      id="enableBtn"
+      type="button"
+    >Enabled</button>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
